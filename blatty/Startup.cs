@@ -30,9 +30,6 @@ namespace blatty
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,12 +44,15 @@ namespace blatty
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string>
+                {
+                    "index.html"
+                }
+            });
+            app.UseSignalR(f => f.MapHub<Blatter>("/hub"));
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseMvc();
         }
     }
 }
