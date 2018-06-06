@@ -21,15 +21,15 @@ export default class AppState {
     }
 
     // Methods
-    public setUserName = (username:any) => this.username = username;
-    public addUserToStack = (username:any) => this.signalrconnection.invoke("AddUser", username);
-    public removeUserFromStack = (username:any) => this.signalrconnection.invoke("RemoveUser", username);
-    public connectToHub = () => this.signalrconnection.start()
+    public setUserName = async (username:any) => this.username = username;
+    public addUserToStack = async (username:any) => this.signalrconnection.invoke("AddUser", username);
+    public removeUserFromStack = async (username:any) => this.signalrconnection.invoke("RemoveUser", username);
+    public connectToHub = async () => this.signalrconnection.start()
         .then(() => this.isConnected = true)
         .catch(error => { 
             console.error("Error when connecting: ",error.toString()); 
         }
     );
 
-    public disconnectFromHub = () => this.signalrconnection.stop().then(() => this.isConnected = false).catch(error => console.error(error.toString()));
+    public disconnectFromHub = async () => this.signalrconnection.stop().then(() => this.isConnected = false).catch(error => console.error(error.toString()));
 }

@@ -6,10 +6,10 @@ import AppState from './AppState';
 export default class Chat extends React.Component<{appState: AppState}, {}> {
   public render() {
 
-    const logout = () => {
-        this.props.appState.removeUserFromStack(this.props.appState.username);
-        this.props.appState.disconnectFromHub();
-        this.props.appState.setUserName(null);
+    const logout = async () => {
+        await this.props.appState.removeUserFromStack(this.props.appState.username);
+        await this.props.appState.disconnectFromHub();
+        await this.props.appState.setUserName(null);
 
         console.log(this.props.appState.signalrconnection);
     } 

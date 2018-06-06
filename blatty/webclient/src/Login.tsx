@@ -10,16 +10,16 @@ export default class Login extends React.Component<{appState: AppState}, {userna
     }
 
     public render() {
-        const loginUser = (e) => {
+        const loginUser = async (e) => {
             if (this.state.username) {
-                this.props.appState.setUserName(this.state.username)
-                this.props.appState.connectToHub();
-                this.props.appState.addUserToStack(this.state.username);
+                await this.props.appState.setUserName(this.state.username)
+                await this.props.appState.connectToHub();
+                await this.props.appState.addUserToStack(this.state.username);
 
                 console.log(this.props.appState.signalrconnection);
 
             } else {
-                this.props.appState.setUserName(null);
+                await this.props.appState.setUserName(null);
             }
         }
 
