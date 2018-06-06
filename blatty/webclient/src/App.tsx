@@ -1,22 +1,18 @@
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import './App.css';
 
-import logo from './logo.svg';
+import AppState from './AppState';
+import Chat from './Chat';
+import Login from './Login';
 
-class App extends React.Component {
+@observer
+export default class App extends React.Component<{appState: AppState}, {}> {
+
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+         this.props.appState.username ? 
+         <Chat appState={this.props.appState}/> : 
+         <Login appState={this.props.appState}/>
     );
   }
 }
-
-export default App;
