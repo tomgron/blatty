@@ -16,8 +16,14 @@ export default class AppState {
 
     constructor() {
         this.signalrconnection = new signalR.HubConnectionBuilder()
-        .withUrl("/hub")
+//        .withUrl("/hub")
+        .withUrl("http://localhost:5000/hub")
+        .configureLogging(signalR.LogLevel.None)
         .build();
+
+        // Register callbacks
+        this.signalrconnection.on("AddUser", (users:string[]) => this.connectedUsers = users);
+        this.signalrconnection.on("RemoveUser", (users:string[]) => this.connectedUsers = users);
     }
 
     // Methods

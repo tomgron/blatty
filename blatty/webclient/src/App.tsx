@@ -10,7 +10,7 @@ export default class App extends React.Component<{appState: AppState}, {}> {
 
   public render() {
     return (
-         this.props.appState.username ? 
+         this.props.appState.username && this.props.appState.isConnected ? 
          <Chat appState={this.props.appState}/> : 
          <Login appState={this.props.appState}/>
     );

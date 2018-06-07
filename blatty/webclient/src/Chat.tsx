@@ -10,8 +10,6 @@ export default class Chat extends React.Component<{appState: AppState}, {}> {
         await this.props.appState.removeUserFromStack(this.props.appState.username);
         await this.props.appState.disconnectFromHub();
         await this.props.appState.setUserName(null);
-
-        console.log(this.props.appState.signalrconnection);
     } 
 
     return (
@@ -19,6 +17,11 @@ export default class Chat extends React.Component<{appState: AppState}, {}> {
         <div>Welcome {this.props.appState.username}</div>
         <div>
             <button onClick={logout}>Leave blatter</button>
+        </div>
+        <div>
+          {this.props.appState.connectedUsers && this.props.appState.connectedUsers.map((name, index) => {
+            return (<div key={index}>{name}</div>)
+          })}
         </div>
       </div>
     )
