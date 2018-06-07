@@ -27,7 +27,7 @@ export default class AppState {
         // Register callbacks
         this.signalrconnection.on("AddUser", (users:string[]) => this.connectedUsers = users);
         this.signalrconnection.on("RemoveUser", (users:string[]) => this.connectedUsers = users);
-        this.signalrconnection.on("SendMessage", (user: string, message:string) => this.getMessages());
+        this.signalrconnection.on("ReceiveMessage", (user: string, message:string) => this.getMessages());
     }
 
     // Methods
