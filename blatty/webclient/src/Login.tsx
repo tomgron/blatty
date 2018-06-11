@@ -23,11 +23,11 @@ export default class Login extends React.Component<{appState: AppState}, {userna
         const onType = (e) => this.setState({username:e.target.value});
         
         return (
-                <div>
-                    <div>Username</div>
-                    <input onChange={onType} name="user_name"/>
-                    <button onClick={loginUser}>Go to blatter</button>
-                </div>
+            <div className="chat">
+                <div>Username, pick one</div>
+                <input onChange={onType} name="user_name"/>
+                <button onClick={loginUser}>Go to blatter</button>
+            </div>
         )
     }
 }

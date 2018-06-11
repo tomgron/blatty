@@ -12,15 +12,15 @@ export default class AppState {
     public isConnected:boolean = false;
 
     @observable
-    public messages:[any, any] = [null,null];
+    public messages:any[] = [];
 
     @observable
     public connectedUsers:string[] = [];
 
     constructor() {
         this.signalrconnection = new signalR.HubConnectionBuilder()
-        .withUrl("/hub")
-        // .withUrl("http://localhost:5000/hub")
+        // .withUrl("/hub")
+        .withUrl("http://localhost:5000/hub")
         .configureLogging(signalR.LogLevel.None)
         .build();
 
@@ -39,10 +39,10 @@ export default class AppState {
     public getMessages = async () => {
         const messages = await this.signalrconnection.invoke("GetMessages");
 
-        this.messages = [null, null];
+        this.messages = [];
 
         messages.map(item => {
-            this.messages.push(item.item1, item.item2);
+            this.messages.push({username: item.item1, message: item.item2});
         });
     }
 

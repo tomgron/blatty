@@ -1,4 +1,63 @@
 body {
     background-color:#eee;
-    font-family:sans-serif
+    background-image:url('../img/montylov-563422-unsplash.jpg');
+    background-size: 100%;
+    font-family: 'Play', sans-serif;
+    font-size: 1.2em;
+    color: #9f0;
+}
+
+button, input {
+    font-family: 'Play', sans-serif;
+    font-size: 1em;
+}
+
+input {
+    width: 300px;
+}
+
+button {
+    border-radius: 10px;
+    background-color:#700;
+    border-color:#700;
+    color:#fff;
+}
+
+.left_column {
+    height:720px;
+    background-color: #00000088;
+    width:500px;
+    margin: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    box-shadow: #000 5px 0px 10px;
+    float: left;
+}
+
+.right_column {
+    height:720px;
+    background-color: #ffffff22;
+    width:300px;
+    margin: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    box-shadow: #000 5px 0px 10px;
+    float: left;
+}
+
+.message {
+    display: flow;
+    margin: 3px 0px 0px 3px;
+    padding: 10px;
+    border-bottom:1px solid #444;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: wrap; 
+    width:400px;
+}
+
+.message__username {
+    color:#f00;
+    font-weight: bold;
+    text-overflow: ellipsis;
 }

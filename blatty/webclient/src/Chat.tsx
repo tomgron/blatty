@@ -28,28 +28,29 @@ export default class Chat extends React.Component<{appState: AppState}, {message
     };
 
     return (
-      <div>
-        <div>Welcome {this.props.appState.username}</div>
-        <div>Messages:</div>
-        <div>
-          {this.props.appState.messages && this.props.appState.messages.map((username, index, messages) => {
-            return (<Message key={index} value={username} messages={messages}/>)
-          })
-        }
-      </div>
-        <div>
-          Type something:
-          <input name="message" onChange={onType} />
-          <button onClick={onSubmitMessge}>Send</button>
+      <div className="chat">
+        <div className="left_column">
+          <div>
+            {this.props.appState.messages && this.props.appState.messages.map((msg, index) => {
+              return (<Message key={index} message={msg}/>)
+            })
+          }
+          </div>
+          <div>
+            <input name="message" onChange={onType} />
+            <button onClick={onSubmitMessge}>Send</button>
+          </div>
         </div>
-        <div>
-            <button onClick={logout}>Leave blatter</button>
-        </div>
-        <div>Users:</div>
-        <div>
-          {this.props.appState.connectedUsers && this.props.appState.connectedUsers.map((user:any, index) => {
-            return (<div key={index}>{user.name}</div>)
-          })}
+        <div className="right_column">
+          <div className="header">ONLINE</div>
+          <div>
+            {this.props.appState.connectedUsers && this.props.appState.connectedUsers.map((user:any, index) => {
+              return (<div key={index}>{user.name}</div>)
+            })}
+          </div>
+          <div>
+              <button onClick={logout}>Leave blatter</button>
+          </div>
         </div>
       </div>
     )
