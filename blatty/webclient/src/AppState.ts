@@ -19,8 +19,8 @@ export default class AppState {
 
     constructor() {
         this.signalrconnection = new signalR.HubConnectionBuilder()
-        // .withUrl("/hub")
-        .withUrl("http://localhost:5000/hub")
+        .withUrl("/hub")
+        // .withUrl("http://localhost:5000/hub")
         .configureLogging(signalR.LogLevel.None)
         .build();
 
