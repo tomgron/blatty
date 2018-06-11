@@ -15,7 +15,7 @@ export default class AppState {
     public messages:[any, any] = [null,null];
 
     @observable
-    public connectedUsers:string[];
+    public connectedUsers:string[] = [];
 
     constructor() {
         this.signalrconnection = new signalR.HubConnectionBuilder()
@@ -24,8 +24,13 @@ export default class AppState {
         .configureLogging(signalR.LogLevel.None)
         .build();
 
+        // This does logout when closing window...does not solve client crashes
+        window.onbeforeunload = (e) => {
+            this.removeUserFromStack(this.username).then(() =>this.disconnectFromHub());
+        }
+
         // Register callbacks
-        this.signalrconnection.on("AddUser", (users:string[]) => this.connectedUsers = users);
+        this.signalrconnection.on("AddUser", (users) => this.connectedUsers = users);
         this.signalrconnection.on("RemoveUser", (users:string[]) => this.connectedUsers = users);
         this.signalrconnection.on("ReceiveMessage", (user: string, message:string) => this.getMessages());
     }

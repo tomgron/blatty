@@ -10,15 +10,17 @@ namespace blatty
     public class Blatter : Hub
     {
         private ILogger _logger;
-        private static RingBuffer<Tuple<string,string>> buffer = new RingBuffer<Tuple<string, string>>(10, true);
+        private static RingBuffer<Tuple<string, string>> buffer = new RingBuffer<Tuple<string, string>>(10, true);
 
         public Blatter(ILogger<Blatter> logger) => _logger = logger;
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task<List<Tuple<string, string>>> GetMessages()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<Tuple<string, string>> items = new List<Tuple<string, string>>(10);
 
-            foreach (Tuple<string, string> item in buffer) 
+            foreach (Tuple<string, string> item in buffer)
                 items.Add(item);
 
             return items;

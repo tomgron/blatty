@@ -33,12 +33,10 @@ export default class Chat extends React.Component<{appState: AppState}, {message
         <div>Messages:</div>
         <div>
           {this.props.appState.messages && this.props.appState.messages.map((username, index, messages) => {
-            console.log("stuff", index, messages, username);
             return (<Message key={index} value={username} messages={messages}/>)
-            // return (<div key={index}>{username} : {username} {message}</div>)
           })
         }
-        </div>
+      </div>
         <div>
           Type something:
           <input name="message" onChange={onType} />
@@ -49,8 +47,8 @@ export default class Chat extends React.Component<{appState: AppState}, {message
         </div>
         <div>Users:</div>
         <div>
-          {this.props.appState.connectedUsers && this.props.appState.connectedUsers.map((name, index) => {
-            return (<div key={index}>{name}</div>)
+          {this.props.appState.connectedUsers && this.props.appState.connectedUsers.map((user:any, index) => {
+            return (<div key={index}>{user.name}</div>)
           })}
         </div>
       </div>
